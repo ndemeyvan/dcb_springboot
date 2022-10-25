@@ -7,5 +7,5 @@ import com.ndemeyvan.springboottutorial.entities.DepartementEntity;
 
 @Repository
 public interface IDepartmentRepository extends JpaRepository<DepartementEntity,Long> {
-    
+    DepartementEntity findByDepartmentNameIgnoreCase(String name);
 }

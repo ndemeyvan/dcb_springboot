@@ -10,4 +10,5 @@ public interface IDepartmentService {
     public DepartementEntity getDepartementById(Long id);
     public void deleteDepartementById(Long id);
     public DepartementEntity updateDepartementById(Long id,DepartementEntity departement);
+    public DepartementEntity getDepartementByName(String name);
 }
