@@ -27,6 +27,7 @@ public class DepartmentController {
 
     /*
      * @Valid : Utilise avec Validator pour valider les valeur entrante
+     * 
      * @RequestBody : Recupere le Json qui est emis
      */
     @PostMapping("/departments")
@@ -40,26 +41,28 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public DepartementEntity getDepartementById(@PathVariable("id") Long id)throws DepartementNotFoundException{
+    public DepartementEntity getDepartementById(@PathVariable("id") Long id) throws DepartementNotFoundException {
         return departmentServiceImpl.getDepartementById(id);
     }
 
-      /*
+    /*
      * @PathVariable("id") : Recupere le name param
      */
     @DeleteMapping("/departments/{id}")
-    public String deleteDepartementById(@PathVariable("id") Long id){
+    public String deleteDepartementById(@PathVariable("id") Long id) throws DepartementNotFoundException {
         departmentServiceImpl.deleteDepartementById(id);
         return "Departement delete successfully";
-    };   
+    };
 
     @PutMapping("/departments/{id}")
-    public DepartementEntity updateDepartementById(@PathVariable("id") Long id,@RequestBody DepartementEntity departement){
-            return departmentServiceImpl.updateDepartementById(id, departement);
+    public DepartementEntity updateDepartementById(@PathVariable("id") Long id,
+            @RequestBody DepartementEntity departement) throws DepartementNotFoundException {
+        return departmentServiceImpl.updateDepartementById(id, departement);
     }
 
     @GetMapping("/departments/name/{name}")
-    public DepartementEntity getDepartementByName(@PathVariable("name") String name){
+    public DepartementEntity getDepartementByName(@PathVariable("name") String name)
+            throws DepartementNotFoundException {
         return departmentServiceImpl.getDepartementByName(name);
     }
 

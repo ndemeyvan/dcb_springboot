@@ -30,10 +30,8 @@ public class DepartmentServiceImpl implements IDepartmentService {
 
     @Override
     public DepartementEntity getDepartementById(Long id) throws DepartementNotFoundException {
-
-
-         Optional<DepartementEntity> departement =  departmentRepository.findById(id);
-        if(!departement.isPresent()){
+        Optional<DepartementEntity> departement = departmentRepository.findById(id);
+        if (!departement.isPresent()) {
             throw new DepartementNotFoundException("Department Not Available");
         }
         return departement.get();
@@ -41,13 +39,22 @@ public class DepartmentServiceImpl implements IDepartmentService {
     }
 
     @Override
-    public void deleteDepartementById(Long id) {
+    public void deleteDepartementById(Long id) throws DepartementNotFoundException {
+        Optional<DepartementEntity> departement = departmentRepository.findById(id);
+        if (!departement.isPresent()) {
+            throw new DepartementNotFoundException("Department Not Available");
+        }
         departmentRepository.deleteById(id);
     }
 
     @Override
-    public DepartementEntity updateDepartementById(Long id, DepartementEntity departement) {
-        DepartementEntity DepartementEntityInDb = departmentRepository.findById(id).get();
+    public DepartementEntity updateDepartementById(Long id, DepartementEntity departement) throws DepartementNotFoundException {
+        Optional<DepartementEntity> dpdb = departmentRepository.findById(id);
+
+        if (!dpdb.isPresent()) {
+            throw new DepartementNotFoundException("Department Not Available");
+        }
+        DepartementEntity DepartementEntityInDb = dpdb.get();
         if (Objects.nonNull(departement.getDepartmentName())
                 && !"".equals(departement.getDepartmentName())) {
             DepartementEntityInDb.setDepartmentName(departement.getDepartmentName());
@@ -66,8 +73,12 @@ public class DepartmentServiceImpl implements IDepartmentService {
     }
 
     @Override
-    public DepartementEntity getDepartementByName(String name) {
-        return departmentRepository.findByDepartmentNameIgnoreCase(name);
+    public DepartementEntity getDepartementByName(String name) throws DepartementNotFoundException {
+        DepartementEntity departement = departmentRepository.findByDepartmentNameIgnoreCase(name);
+        if (departement==null) {
+            throw new DepartementNotFoundException("Department Not Available");
+        }
+        return departement;
     }
 
 }

@@ -9,7 +9,7 @@ public interface IDepartmentService {
     public DepartementEntity saveDepartement( DepartementEntity departement);
     public List<DepartementEntity> getAllDepartementsList();
     public DepartementEntity getDepartementById(Long id) throws DepartementNotFoundException;
-    public void deleteDepartementById(Long id);
-    public DepartementEntity updateDepartementById(Long id,DepartementEntity departement);
-    public DepartementEntity getDepartementByName(String name);
+    public void deleteDepartementById(Long id) throws DepartementNotFoundException ;
+    public DepartementEntity updateDepartementById(Long id,DepartementEntity departement) throws DepartementNotFoundException;
+    public DepartementEntity getDepartementByName(String name) throws DepartementNotFoundException;
 }
