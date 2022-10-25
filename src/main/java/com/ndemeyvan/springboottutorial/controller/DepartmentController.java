@@ -2,6 +2,8 @@ package com.ndemeyvan.springboottutorial.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +24,12 @@ public class DepartmentController {
     @Autowired
     private DepartmentServiceImpl departmentServiceImpl;
 
+    /*
+     * @Valid : Utilise avec Validator pour valider les valeur entrante
+     * @RequestBody : Recupere le Json qui est emis
+     */
     @PostMapping("/departments")
-    public DepartementEntity saveDepartement(@RequestBody DepartementEntity departement) {
+    public DepartementEntity saveDepartement(@Valid @RequestBody DepartementEntity departement) {
         return departmentServiceImpl.saveDepartement(departement);
     }
 
@@ -37,6 +43,9 @@ public class DepartmentController {
         return departmentServiceImpl.getDepartementById(id);
     }
 
+      /*
+     * @PathVariable("id") : Recupere le name param
+     */
     @DeleteMapping("/departments/{id}")
     public String deleteDepartementById(@PathVariable("id") Long id){
         departmentServiceImpl.deleteDepartementById(id);

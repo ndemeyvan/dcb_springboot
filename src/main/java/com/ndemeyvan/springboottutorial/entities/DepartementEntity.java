@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class DepartementEntity {
@@ -12,7 +15,11 @@ public class DepartementEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long departmentId;
+
+    @NotBlank(message = "Please add department name")
+    @Length(min = 3)
     private String departmentName;
+
     private String departmentAddress;
     private String departmentCode;
 
