@@ -2,11 +2,13 @@ package com.ndemeyvan.springboottutorial.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ndemeyvan.springboottutorial.entities.DepartementEntity;
+import com.ndemeyvan.springboottutorial.error.DepartementNotFoundException;
 import com.ndemeyvan.springboottutorial.repository.IDepartmentRepository;
 
 @Service
@@ -27,8 +29,15 @@ public class DepartmentServiceImpl implements IDepartmentService {
     }
 
     @Override
-    public DepartementEntity getDepartementById(Long id) {
-        return departmentRepository.findById(id).get();
+    public DepartementEntity getDepartementById(Long id) throws DepartementNotFoundException {
+
+
+         Optional<DepartementEntity> departement =  departmentRepository.findById(id);
+        if(!departement.isPresent()){
+            throw new DepartementNotFoundException("Department Not Available");
+        }
+        return departement.get();
+
     }
 
     @Override
