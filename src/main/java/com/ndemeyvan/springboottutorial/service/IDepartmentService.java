@@ -8,4 +8,5 @@ public interface IDepartmentService {
     public DepartementEntity saveDepartement( DepartementEntity departement);
     List<DepartementEntity> getAllDepartementsList();
     DepartementEntity getDepartementById(Long id);
+    void deleteDepartementById(Long id);
 }

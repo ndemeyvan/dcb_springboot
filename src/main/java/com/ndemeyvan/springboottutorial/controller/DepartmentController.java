@@ -3,6 +3,7 @@ package com.ndemeyvan.springboottutorial.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,5 +35,11 @@ public class DepartmentController {
     public DepartementEntity getDepartementById(@PathVariable("id") Long id){
         return departmentServiceImpl.getDepartementById(id);
     }
+
+    @DeleteMapping("/departments/{id}")
+    public String deleteDepartementById(@PathVariable("id") Long id){
+        departmentServiceImpl.deleteDepartementById(id);
+        return "Departement delete successfully";
+    };   
 
 }
