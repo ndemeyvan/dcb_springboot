@@ -22,8 +22,12 @@ public class DepartmentServiceImpl implements IDepartmentService {
 
     @Override
     public List<DepartementEntity> getAllDepartementsList() {
-        // TODO Auto-generated method stub
         return departmentRepository.findAll();
+    }
+
+    @Override
+    public DepartementEntity getDepartementById(Long id) {
+        return departmentRepository.findById(id).get();
     }
 
 }

@@ -7,4 +7,5 @@ import com.ndemeyvan.springboottutorial.entities.DepartementEntity;
 public interface IDepartmentService {
     public DepartementEntity saveDepartement( DepartementEntity departement);
     List<DepartementEntity> getAllDepartementsList();
+    DepartementEntity getDepartementById(Long id);
 }
